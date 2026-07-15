@@ -238,6 +238,154 @@
   .tag{ border:1px solid var(--ink-line); border-radius:999px; color:var(--text-lo); padding:5px 9px; font-size:12px; }
   .empty-state{ padding:42px 0; text-align:center; border:1px dashed var(--ink-line); color:var(--text-lo); font-size:13px; }
 
+  .workspace-controls{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid var(--ink-line);
+  }
+  .control-group{ display:flex; align-items:center; gap:9px; min-width:0; }
+  .control-label{ color:var(--text-lo); font-size:11px; white-space:nowrap; }
+  .segmented{
+    display:inline-flex;
+    padding:3px;
+    border:1px solid var(--ink-line);
+    border-radius:7px;
+    background:var(--ink-2);
+  }
+  .segment-btn{
+    border:0;
+    border-radius:4px;
+    padding:7px 10px;
+    background:transparent;
+    color:var(--text-lo);
+    font-family:'Noto Sans SC',sans-serif;
+    font-size:12px;
+    cursor:pointer;
+  }
+  .segment-btn.active{ background:var(--paper); color:var(--text-ink); }
+  .model-select{
+    min-width:118px;
+    border:1px solid var(--ink-line);
+    border-radius:6px;
+    background:var(--ink-2);
+    color:var(--text-hi);
+    padding:8px 10px;
+    font-family:'Noto Sans SC',sans-serif;
+    font-size:12px;
+  }
+  .save-status{ color:var(--jade); font-size:11px; white-space:nowrap; }
+  .expert-brief{
+    display:none;
+    margin:16px 0 2px;
+    border:1px solid var(--ink-line);
+    border-left:3px solid var(--jade);
+    border-radius:6px;
+    background:var(--ink-2);
+    padding:14px;
+  }
+  .expert-brief.visible{ display:block; }
+  .expert-brief h3{ margin:0 0 5px; font-size:14px; }
+  .expert-brief p{ margin:0 0 10px; color:var(--text-lo); font-size:12px; line-height:1.6; }
+  .brief-actions{ display:flex; justify-content:flex-end; gap:8px; margin-top:8px; }
+  .small-btn{
+    border:1px solid var(--ink-line);
+    border-radius:5px;
+    background:transparent;
+    color:var(--text-hi);
+    padding:7px 10px;
+    font-family:'Noto Sans SC',sans-serif;
+    font-size:12px;
+    cursor:pointer;
+  }
+  .small-btn.primary{ background:var(--vermilion); border-color:var(--vermilion); color:#fff; }
+  .small-btn:hover{ border-color:var(--jade); }
+  .panel-tabs{ display:grid; grid-template-columns:repeat(2,1fr); gap:5px; margin-bottom:14px; }
+  .panel-tab{
+    border:1px solid var(--ink-line);
+    border-radius:5px;
+    background:transparent;
+    color:var(--text-lo);
+    padding:7px 6px;
+    font-family:'Noto Sans SC',sans-serif;
+    font-size:11px;
+    cursor:pointer;
+  }
+  .panel-tab.active{ background:var(--paper); border-color:var(--paper); color:var(--text-ink); }
+  .panel-pane{ display:none; }
+  .panel-pane.active{ display:block; }
+  .field{ margin-bottom:10px; }
+  .field label{ display:block; margin-bottom:5px; color:var(--text-lo); font-size:11px; }
+  .field input,.field textarea,.field select{
+    width:100%;
+    border:1px solid var(--ink-line);
+    border-radius:5px;
+    background:var(--ink-2);
+    color:var(--text-hi);
+    padding:8px 9px;
+    font-family:'Noto Sans SC',sans-serif;
+    font-size:12px;
+    line-height:1.45;
+  }
+  .field textarea{ min-height:64px; resize:vertical; }
+  .inline-form{ display:flex; gap:6px; align-items:flex-end; }
+  .inline-form .field{ flex:1; margin:0; }
+  .list-stack{ display:grid; gap:7px; margin-top:10px; }
+  .data-item{
+    border:1px solid var(--ink-line);
+    border-radius:5px;
+    padding:8px 9px;
+    font-size:12px;
+    line-height:1.5;
+    background:var(--ink-2);
+  }
+  .data-item-head{ display:flex; justify-content:space-between; gap:8px; align-items:flex-start; }
+  .data-item button{ border:0; background:transparent; color:var(--text-lo); cursor:pointer; padding:0; }
+  .trust-badge{
+    display:inline-flex;
+    margin-top:5px;
+    border-radius:999px;
+    padding:3px 7px;
+    font-size:10px;
+    border:1px solid var(--ink-line);
+    color:var(--text-lo);
+  }
+  .trust-badge.verified{ color:#8FC2A7; border-color:#52796F; }
+  .trust-badge.user{ color:#E2C47A; border-color:#8F7845; }
+  .trust-badge.pending{ color:#D9917D; border-color:#8C4A38; }
+  .version-item{ cursor:pointer; }
+  .version-item:hover{ border-color:var(--jade); }
+  .version-meta{ display:block; margin-top:3px; color:var(--text-lo); font-size:10px; }
+  .undo-toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:30;
+    display:none;
+    align-items:center;
+    gap:12px;
+    max-width:360px;
+    border:1px solid var(--jade);
+    border-radius:7px;
+    background:var(--paper);
+    color:var(--text-ink);
+    box-shadow:0 12px 34px rgba(0,0,0,.35);
+    padding:11px 13px;
+    font-size:12px;
+  }
+  .undo-toast.visible{ display:flex; }
+  .undo-toast button{ border:0; background:transparent; color:var(--vermilion-dim); font-weight:700; cursor:pointer; }
+  .prompt-guide{
+    margin-top:12px;
+    border-top:1px solid var(--ink-line);
+    padding-top:10px;
+    color:var(--text-lo);
+    font-size:11px;
+    line-height:1.6;
+  }
+
   #examples{
     display:flex;
     flex-wrap:wrap;
@@ -372,7 +520,7 @@
     border-top: 1px solid var(--ink-line);
     background: var(--ink);
   }
-  #cardBtn{
+  #cardBtn,#promptBtn{
     display:none;
     align-items:center;
     gap:6px;
@@ -386,7 +534,7 @@
     border-radius:999px;
     cursor:pointer;
   }
-  #cardBtn:hover{ background: var(--jade); color: var(--ink); }
+  #cardBtn:hover,#promptBtn:hover{ background: var(--jade); color: var(--ink); }
   #composer{
     display:flex;
     gap:10px;
@@ -421,7 +569,7 @@
     transition: background .15s ease;
   }
   #sendBtn:hover{ background: var(--vermilion-dim); }
-  #sendBtn:disabled, #cardBtn:disabled{ opacity:0.45; cursor:not-allowed; }
+  #sendBtn:disabled, #cardBtn:disabled, #promptBtn:disabled{ opacity:0.45; cursor:not-allowed; }
 
   footer{
     text-align:center;
@@ -442,6 +590,9 @@
     .project-panel{ border-left:0; border-top:1px solid var(--ink-line); padding:16px 0 22px; margin-top:0; }
     .section-grid{ grid-template-columns:1fr; }
     .view-heading{ align-items:flex-start; flex-direction:column; gap:5px; }
+    .workspace-controls{ align-items:flex-start; flex-direction:column; }
+    .control-group{ width:100%; justify-content:space-between; }
+    .model-select{ flex:1; }
   }
 </style>
 </head>
@@ -468,24 +619,38 @@
 
 <main>
   <section class="view" id="projectsView">
-    <div class="view-heading"><div><h2>项目库</h2><p>管理不同文化 IP 项目，继续上次的创作。</p></div><span class="meta">2 个项目</span></div>
-    <div class="section-grid">
-      <article class="section-card" data-open-workbench>
-        <h3>古事纪 · 神话角色</h3><p>东方奇幻角色设定与视觉探索</p><span class="count">进行中 · 68%</span>
-      </article>
-      <article class="section-card" data-open-workbench>
-        <h3>客家非遗文创 IP</h3><p>文化元素与日常产品结合方向</p><span class="count">草稿 · 12%</span>
-      </article>
-      <article class="section-card" data-open-workbench>
-        <h3>＋ 新建创作项目</h3><p>从一句文化想法开始建立新的设定档案</p><span class="count">开始创作</span>
-      </article>
-    </div>
+    <div class="view-heading"><div><h2>项目库</h2><p>管理不同文化 IP 项目，继续上次的创作。</p></div><span class="meta" id="projectCount">0 个项目</span></div>
+    <div class="section-grid" id="projectGrid"></div>
   </section>
 
   <section class="view active" id="workbenchView">
     <div class="view-heading"><div><h2>创作工作台</h2><p>通过会话分阶段确定文化、角色、视觉与产品方向。</p></div><span class="meta" id="workbenchStatus">当前项目 · 未命名</span></div>
+    <div class="workspace-controls">
+      <div class="control-group">
+        <span class="control-label">工作方式</span>
+        <div class="segmented" id="modeSwitch">
+          <button class="segment-btn active" type="button" data-mode="guided">新手引导</button>
+          <button class="segment-btn" type="button" data-mode="professional">专业协作</button>
+        </div>
+      </div>
+      <div class="control-group">
+        <span class="control-label">目标生图模型</span>
+        <select class="model-select" id="targetModel">
+          <option value="doubao">豆包</option>
+          <option value="gpt">GPT 生图</option>
+          <option value="jimeng">即梦</option>
+        </select>
+        <span class="save-status" id="saveStatus">已自动保存</span>
+      </div>
+    </div>
     <div class="workbench-grid">
       <div class="workbench-chat">
+        <div class="expert-brief" id="expertBrief">
+          <h3>专业 Brief</h3>
+          <p>直接输入项目目标、受众、文化资料、产品类型、固定要求与开放探索部分。AI 会先识别约束和冲突，再给出创意路线。</p>
+          <textarea id="briefInput" placeholder="例如：为赣南客家食品品牌设计年轻化 IP。已有萝卜粄资料，目标用户为18-30岁，希望延展冰箱贴与节日礼盒……" rows="4"></textarea>
+          <div class="brief-actions"><button class="small-btn primary" id="analyzeBriefBtn" type="button">提炼 Brief 并提出方案</button></div>
+        </div>
         <div id="examples">
           <button class="chip" data-text="我想做一个客家非遗相关的文创 IP，但不知道从哪里开始。">客家非遗文创 IP</button>
           <button class="chip" data-text="我想做一个古事纪神话角色，风格偏东方奇幻。">古事纪神话角色</button>
@@ -495,6 +660,7 @@
         <div id="chat"></div>
         <div id="composerWrap">
           <button id="cardBtn" type="button">📋 基于目前讨论，生成完整设定卡</button>
+          <button id="promptBtn" type="button">生成当前模型适配提示词</button>
           <form id="composer">
             <textarea id="userInput" placeholder="说出你的文化 IP 想法，比如：我想做一个客家非遗 IP……" rows="1"></textarea>
             <button id="sendBtn" type="submit">发送</button>
@@ -505,14 +671,37 @@
         <div class="panel-label">CURRENT PROJECT</div>
         <div class="project-title" id="projectTitle">未命名项目</div>
         <div class="project-status" id="projectStatus">等待确定创作方向</div>
-        <div class="summary-list">
-          <div class="summary-item"><span>创作目标</span><strong id="summaryGoal">尚未确定</strong></div>
-          <div class="summary-item"><span>文化主题</span><strong id="summaryCulture">等待 AI 提取</strong></div>
-          <div class="summary-item"><span>视觉方向</span><strong id="summaryStyle">等待用户选择</strong></div>
-          <div class="summary-item"><span>下一步</span><strong id="summaryNext">先告诉我一个模糊想法</strong></div>
+        <div class="panel-tabs">
+          <button class="panel-tab active" type="button" data-pane="setting">项目设定</button>
+          <button class="panel-tab" type="button" data-pane="anchors">不可变特征</button>
+          <button class="panel-tab" type="button" data-pane="sources">文化证据</button>
+          <button class="panel-tab" type="button" data-pane="versions">版本记录</button>
+        </div>
+        <div class="panel-pane active" id="settingPane">
+          <div class="field"><label for="projectNameInput">项目名称</label><input id="projectNameInput" placeholder="未命名项目"></div>
+          <div class="field"><label for="goalInput">创作目标</label><textarea id="goalInput" placeholder="IP角色、文创产品、故事或完整提案"></textarea></div>
+          <div class="field"><label for="audienceInput">目标用户</label><input id="audienceInput" placeholder="例如：18-30岁文旅游客"></div>
+          <div class="field"><label for="cultureInput">文化主题</label><input id="cultureInput" placeholder="地域、非遗、神话或工艺"></div>
+          <div class="field"><label for="styleInput">视觉方向</label><input id="styleInput" placeholder="例如：扁平、手办、东方奇幻"></div>
+          <div class="prompt-guide" id="modelGuide">豆包适配：中文自然语言、明确主体层级、避免直接生成复杂文字。</div>
+        </div>
+        <div class="panel-pane" id="anchorsPane">
+          <div class="inline-form"><div class="field"><label for="anchorInput">新增不可变特征</label><input id="anchorInput" placeholder="例如：右侧独立馅料展示口"></div><button class="small-btn" id="addAnchorBtn" type="button">添加</button></div>
+          <div class="list-stack" id="anchorList"></div>
+        </div>
+        <div class="panel-pane" id="sourcesPane">
+          <div class="field"><label for="sourceClaimInput">文化信息</label><textarea id="sourceClaimInput" placeholder="例如：春节期间制作萝卜粄"></textarea></div>
+          <div class="field"><label for="sourceRefInput">来源名称或链接</label><input id="sourceRefInput" placeholder="政府名录、博物馆、访谈或用户资料"></div>
+          <div class="field"><label for="sourceTrustInput">可信度</label><select id="sourceTrustInput"><option value="user">用户提供</option><option value="verified">已核实（用户确认）</option><option value="pending">待核实</option></select></div>
+          <button class="small-btn" id="addSourceBtn" type="button">添加文化证据</button>
+          <div class="list-stack" id="sourceList"></div>
+        </div>
+        <div class="panel-pane" id="versionsPane">
+          <div class="brief-actions"><button class="small-btn" id="saveVersionBtn" type="button">保存版本</button><button class="small-btn primary" id="branchBtn" type="button">创建分支</button></div>
+          <div class="list-stack" id="versionList"></div>
         </div>
         <button class="panel-link" data-view-target="spec" type="button">查看视觉设定 →</button>
-        <button class="panel-link" id="restartBtn" type="button">↻ 重新开始当前项目</button>
+        <button class="panel-link" id="restartBtn" type="button">↻ 开启同项目新会话</button>
       </aside>
     </div>
   </section>
@@ -544,25 +733,32 @@
   </section>
 </main>
 
+<div class="undo-toast" id="undoToast"><span id="undoText">操作已保存</span><button id="undoBtn" type="button">撤销</button></div>
+
 <footer>AI 生成内容仅供创意参考，具体文化细节建议自行核实后使用。</footer>
 
 <script>
   marked.setOptions({ breaks: true });
 
+  const STORAGE_KEY = 'ai-ip-workspace-v3';
   const chatEl = document.getElementById('chat');
   const formEl = document.getElementById('composer');
   const inputEl = document.getElementById('userInput');
   const exampleWrap = document.getElementById('examples');
   const cardBtn = document.getElementById('cardBtn');
+  const promptBtn = document.getElementById('promptBtn');
   const sendBtn = document.getElementById('sendBtn');
   const navBtns = document.querySelectorAll('.nav-btn');
   const newProjectBtn = document.getElementById('newProjectBtn');
   const restartBtn = document.getElementById('restartBtn');
-
-  let messages = [];
-  let awaitingCard = false;
-  let pendingRoute = null;
-  let activeTopicTags = [];
+  const modeBtns = document.querySelectorAll('.segment-btn');
+  const targetModelEl = document.getElementById('targetModel');
+  const expertBriefEl = document.getElementById('expertBrief');
+  const briefInputEl = document.getElementById('briefInput');
+  const saveStatusEl = document.getElementById('saveStatus');
+  const undoToastEl = document.getElementById('undoToast');
+  const undoTextEl = document.getElementById('undoText');
+  const undoBtn = document.getElementById('undoBtn');
 
   const TOPIC_RULES = [
     { name: '神话角色', pattern: /古事纪|神话|神兽|角色|东方奇幻|人物/ },
@@ -572,8 +768,107 @@
     { name: '海报视觉', pattern: /海报|宣传|视觉海报|广告/ }
   ];
 
-  const GREETING = "你好，我是 **AI IP 视觉设定助手**。\n\n告诉我一个你想做的文化 IP 方向——哪怕只是一句很模糊的想法，我会一步步帮你理清方向、拆解可用的文化元素、设定角色外观与色彩风格，最后整理成一套完整的设定卡和 AI 绘图提示词。\n\n可以直接打字，也可以点上面的示例试试看。";
-  const NEW_PROJECT_GREETING = "已开启新的创作项目。\n\n这次我不会沿用上一个项目的文化、角色和风格设定。请告诉我新的文化 IP 想法，哪怕只有一句话也可以。";
+  const MODEL_GUIDES = {
+    doubao: '豆包适配：使用中文自然语言，明确主体与视觉层级，避免直接生成复杂中文文字。',
+    gpt: 'GPT适配：强化空间位置和构图逻辑，建议中英文双版，并明确不生成画面文字。',
+    jimeng: '即梦适配：重复角色锚点，明确画幅、中心构图和完整入镜，增加排除描述。'
+  };
+
+  const GREETINGS = {
+    guided: '你好，我是 **AI IP 视觉设定助手**。\n\n现在是 **新手引导模式**。告诉我一个模糊的文化 IP 想法，我会一次只问最关键的 1-2 个问题，并把确认结果保存到右侧项目档案。',
+    professional: '你好，现在是 **专业协作模式**。\n\n你可以直接粘贴项目 Brief、文化资料和固定要求。我会先识别约束、冲突和开放空间，再提出有文化逻辑与商业理由的创意路线。',
+    newSession: '已开启同一项目的新会话。项目设定、不可变特征和文化证据仍然保留，旧聊天已经保存到版本记录。'
+  };
+
+  function makeId(prefix) {
+    return prefix + '-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7);
+  }
+
+  function createProject(seed = {}) {
+    const now = new Date().toISOString();
+    return {
+      id: makeId('project'),
+      name: seed.name || '未命名项目',
+      mode: seed.mode || 'guided',
+      targetModel: seed.targetModel || 'doubao',
+      brief: seed.brief || '',
+      goal: seed.goal || '',
+      audience: seed.audience || '',
+      culture: seed.culture || '',
+      style: seed.style || '',
+      anchors: Array.isArray(seed.anchors) ? [...seed.anchors] : [],
+      sources: Array.isArray(seed.sources) ? [...seed.sources] : [],
+      messages: Array.isArray(seed.messages) ? [...seed.messages] : [],
+      topicTags: Array.isArray(seed.topicTags) ? [...seed.topicTags] : [],
+      versions: Array.isArray(seed.versions) ? [...seed.versions] : [],
+      branchOf: seed.branchOf || null,
+      createdAt: seed.createdAt || now,
+      updatedAt: now
+    };
+  }
+
+  function loadWorkspace() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (parsed && parsed.projects && parsed.currentProjectId && parsed.projects[parsed.currentProjectId]) return parsed;
+    } catch (error) {
+      console.warn('本地项目读取失败，已创建新项目。', error);
+    }
+    const first = createProject();
+    return { currentProjectId: first.id, projects: { [first.id]: first } };
+  }
+
+  let workspace = loadWorkspace();
+  let project = workspace.projects[workspace.currentProjectId];
+  let messages = project.messages || [];
+  let activeTopicTags = project.topicTags || [];
+  let awaitingCard = false;
+  let pendingRoute = null;
+  let saveTimer = null;
+  let undoTimer = null;
+  let undoAction = null;
+
+  function snapshotState(source = project) {
+    return {
+      name: source.name,
+      mode: source.mode,
+      targetModel: source.targetModel,
+      brief: source.brief,
+      goal: source.goal,
+      audience: source.audience,
+      culture: source.culture,
+      style: source.style,
+      anchors: [...source.anchors],
+      sources: source.sources.map((item) => ({ ...item })),
+      messages: source.messages.map((item) => ({ ...item })),
+      topicTags: [...source.topicTags]
+    };
+  }
+
+  function persistProject(showStatus = true) {
+    project.messages = messages;
+    project.topicTags = activeTopicTags;
+    project.updatedAt = new Date().toISOString();
+    workspace.projects[project.id] = project;
+    workspace.currentProjectId = project.id;
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(workspace));
+      if (showStatus) {
+        saveStatusEl.textContent = '已自动保存';
+        setTimeout(() => { saveStatusEl.textContent = '本地保存'; }, 1200);
+      }
+    } catch (error) {
+      saveStatusEl.textContent = '保存失败';
+      console.error(error);
+    }
+    renderProjectGrid();
+  }
+
+  function scheduleSave() {
+    saveStatusEl.textContent = '保存中…';
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => persistProject(), 350);
+  }
 
   function detectTopics(text) {
     return TOPIC_RULES.filter((rule) => rule.pattern.test(text)).map((rule) => rule.name);
@@ -586,87 +881,29 @@
     return nextTags.some((tag) => !activeTopicTags.includes(tag));
   }
 
+  function projectContext() {
+    return {
+      name: project.name,
+      mode: project.mode,
+      targetModel: project.targetModel,
+      brief: project.brief,
+      goal: project.goal,
+      audience: project.audience,
+      culture: project.culture,
+      style: project.style,
+      lockedFeatures: project.anchors,
+      culturalSources: project.sources.map(({ claim, reference, trust }) => ({ claim, reference, trust }))
+    };
+  }
+
   function showView(viewName) {
-    document.querySelectorAll('.view').forEach((view) => {
-      view.classList.toggle('active', view.id === viewName + 'View');
-    });
+    document.querySelectorAll('.view').forEach((view) => view.classList.toggle('active', view.id === viewName + 'View'));
     navBtns.forEach((button) => button.classList.toggle('active', button.dataset.view === viewName));
   }
 
-  function updateProjectSummary(text) {
-    const tags = detectTopics(text);
-    activeTopicTags = Array.from(new Set([...activeTopicTags, ...tags]));
-    const shortTitle = text.length > 18 ? text.slice(0, 18) + '…' : text;
-    document.getElementById('projectTitle').textContent = shortTitle || '未命名项目';
-    document.getElementById('workbenchStatus').textContent = '当前项目 · ' + (shortTitle || '未命名');
-    document.getElementById('projectStatus').textContent = '创作方向已进入引导';
-    document.getElementById('summaryGoal').textContent = text;
-    document.getElementById('summaryCulture').textContent = activeTopicTags.length ? activeTopicTags.join(' / ') : '等待 AI 提取';
-    document.getElementById('summaryNext').textContent = '确认文化元素与视觉风格';
-  }
-
-  function addRouteCard(text, previousTags = activeTopicTags) {
-    const nextTags = detectTopics(text);
-    const card = document.createElement('div');
-    card.className = 'route-card';
-    card.innerHTML = '<strong>检测到创作方向发生变化</strong><p>你刚刚提到的是「' + nextTags.join(' / ') + '」。它可能和当前项目「' + previousTags.join(' / ') + '」有关，也可能是一个全新的创作想法。请选择会话处理方式：</p>';
-    const actions = document.createElement('div');
-    actions.className = 'route-actions';
-    const continueBtn = document.createElement('button');
-    continueBtn.className = 'primary';
-    continueBtn.type = 'button';
-    continueBtn.textContent = '继续当前项目';
-    const newBtn = document.createElement('button');
-    newBtn.type = 'button';
-    newBtn.textContent = '开启新项目';
-    actions.append(continueBtn, newBtn);
-    card.appendChild(actions);
-    chatEl.appendChild(card);
-    chatEl.scrollTop = chatEl.scrollHeight;
-    pendingRoute = { text, card };
-    continueBtn.onclick = () => {
-      if (!pendingRoute) return;
-      const pending = pendingRoute.text;
-      pendingRoute = null;
-      card.remove();
-      commitMessage(pending, 'continue');
-    };
-    newBtn.onclick = () => {
-      if (!pendingRoute) return;
-      const pending = pendingRoute.text;
-      pendingRoute = null;
-      resetProject(false);
-      commitMessage(pending, 'new');
-    };
-  }
-
-  function commitMessage(text, mode) {
-    if (mode === 'new') {
-      updateProjectSummary(text);
-      addMessageToUI('user', text);
-    } else {
-      updateProjectSummary(text);
-    }
-    messages.push({ role: 'user', content: text });
-    sendToAPI();
-  }
-
-  function resetProject(showGreeting = true) {
-    messages = [];
-    activeTopicTags = [];
-    pendingRoute = null;
-    awaitingCard = false;
-    chatEl.innerHTML = '';
-    exampleWrap.style.display = 'flex';
-    cardBtn.style.display = 'none';
-    document.getElementById('projectTitle').textContent = '未命名项目';
-    document.getElementById('workbenchStatus').textContent = '当前项目 · 未命名';
-    document.getElementById('projectStatus').textContent = '等待确定创作方向';
-    document.getElementById('summaryGoal').textContent = '尚未确定';
-    document.getElementById('summaryCulture').textContent = '等待 AI 提取';
-    document.getElementById('summaryStyle').textContent = '等待用户选择';
-    document.getElementById('summaryNext').textContent = '先告诉我一个模糊想法';
-    if (showGreeting) addMessageToUI('assistant', NEW_PROJECT_GREETING);
+  function showPanelPane(name) {
+    document.querySelectorAll('.panel-tab').forEach((button) => button.classList.toggle('active', button.dataset.pane === name));
+    document.querySelectorAll('.panel-pane').forEach((pane) => pane.classList.toggle('active', pane.id === name + 'Pane'));
   }
 
   function addMessageToUI(role, content, opts = {}) {
@@ -685,8 +922,8 @@
         copyBtn.textContent = '复制设定卡内容';
         copyBtn.onclick = () => {
           navigator.clipboard.writeText(content);
-          copyBtn.textContent = '已复制 ✓';
-          setTimeout(() => (copyBtn.textContent = '复制设定卡内容'), 1600);
+          copyBtn.textContent = '已复制';
+          setTimeout(() => { copyBtn.textContent = '复制设定卡内容'; }, 1600);
         };
         div.appendChild(copyBtn);
       }
@@ -698,6 +935,355 @@
     return div;
   }
 
+  function renderConversation(localGreeting) {
+    chatEl.innerHTML = '';
+    if (!messages.length) {
+      addMessageToUI('assistant', localGreeting || GREETINGS[project.mode]);
+    } else {
+      messages.forEach((message) => addMessageToUI(message.role, message.content));
+    }
+    revealComposerExtras();
+  }
+
+  function renderMode() {
+    modeBtns.forEach((button) => button.classList.toggle('active', button.dataset.mode === project.mode));
+    expertBriefEl.classList.toggle('visible', project.mode === 'professional');
+    exampleWrap.style.display = project.mode === 'guided' && !messages.length ? 'flex' : 'none';
+    inputEl.placeholder = project.mode === 'professional'
+      ? '直接提出设计判断、修改要求或需要比较的创意路线……'
+      : '说出你的文化 IP 想法，比如：我想做一个客家非遗 IP……';
+  }
+
+  function renderProjectHeader() {
+    document.getElementById('projectTitle').textContent = project.name || '未命名项目';
+    document.getElementById('workbenchStatus').textContent = '当前项目 · ' + (project.name || '未命名');
+    document.getElementById('projectStatus').textContent = project.branchOf ? '方案分支 · 自动保存中' : '主项目 · 自动保存中';
+  }
+
+  function renderFields() {
+    document.getElementById('projectNameInput').value = project.name === '未命名项目' ? '' : project.name;
+    document.getElementById('goalInput').value = project.goal;
+    document.getElementById('audienceInput').value = project.audience;
+    document.getElementById('cultureInput').value = project.culture;
+    document.getElementById('styleInput').value = project.style;
+    briefInputEl.value = project.brief;
+    targetModelEl.value = project.targetModel;
+    document.getElementById('modelGuide').textContent = MODEL_GUIDES[project.targetModel];
+    promptBtn.textContent = '生成' + ({ doubao: '豆包', gpt: 'GPT', jimeng: '即梦' }[project.targetModel]) + '适配提示词';
+  }
+
+  function renderAnchors() {
+    const list = document.getElementById('anchorList');
+    list.innerHTML = '';
+    if (!project.anchors.length) {
+      list.innerHTML = '<div class="data-item">尚未锁定特征。确认基准角色后，把体型、五官、核心符号等加入这里。</div>';
+      return;
+    }
+    project.anchors.forEach((anchor, index) => {
+      const item = document.createElement('div');
+      item.className = 'data-item';
+      const head = document.createElement('div');
+      head.className = 'data-item-head';
+      const text = document.createElement('span');
+      text.textContent = anchor;
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.textContent = '删除';
+      remove.onclick = () => { project.anchors.splice(index, 1); persistProject(); renderAnchors(); updateSpecView(); };
+      head.append(text, remove);
+      item.appendChild(head);
+      list.appendChild(item);
+    });
+  }
+
+  function trustLabel(trust) {
+    return { verified: '已核实（用户确认）', user: '用户提供', pending: '待核实' }[trust] || '待核实';
+  }
+
+  function renderSources() {
+    const list = document.getElementById('sourceList');
+    list.innerHTML = '';
+    if (!project.sources.length) {
+      list.innerHTML = '<div class="data-item">尚无文化证据。无来源的文化说法将由 AI 标记为“待核实”或“无法确认”。</div>';
+      return;
+    }
+    project.sources.forEach((source, index) => {
+      const item = document.createElement('div');
+      item.className = 'data-item';
+      const head = document.createElement('div');
+      head.className = 'data-item-head';
+      const textWrap = document.createElement('div');
+      const claim = document.createElement('div');
+      claim.textContent = source.claim;
+      const ref = document.createElement('span');
+      ref.className = 'version-meta';
+      ref.textContent = source.reference || '未填写来源';
+      const badge = document.createElement('span');
+      badge.className = 'trust-badge ' + source.trust;
+      badge.textContent = trustLabel(source.trust);
+      textWrap.append(claim, ref, badge);
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.textContent = '删除';
+      remove.onclick = () => { project.sources.splice(index, 1); persistProject(); renderSources(); updateSpecView(); };
+      head.append(textWrap, remove);
+      item.appendChild(head);
+      list.appendChild(item);
+    });
+  }
+
+  function renderVersions() {
+    const list = document.getElementById('versionList');
+    list.innerHTML = '';
+    if (!project.versions.length) {
+      list.innerHTML = '<div class="data-item">系统会在新会话、创建分支和手动保存时建立版本。</div>';
+      return;
+    }
+    project.versions.forEach((version) => {
+      const item = document.createElement('button');
+      item.type = 'button';
+      item.className = 'data-item version-item';
+      item.style.textAlign = 'left';
+      item.style.width = '100%';
+      const title = document.createElement('strong');
+      title.textContent = version.label;
+      const meta = document.createElement('span');
+      meta.className = 'version-meta';
+      meta.textContent = new Date(version.createdAt).toLocaleString('zh-CN') + ' · 点击恢复';
+      item.append(title, meta);
+      item.onclick = () => restoreVersion(version.id);
+      list.appendChild(item);
+    });
+  }
+
+  function renderProjectGrid() {
+    const grid = document.getElementById('projectGrid');
+    const projects = Object.values(workspace.projects).sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+    document.getElementById('projectCount').textContent = projects.length + ' 个项目';
+    grid.innerHTML = '';
+    projects.forEach((item) => {
+      const card = document.createElement('article');
+      card.className = 'section-card';
+      card.style.cursor = 'pointer';
+      const title = document.createElement('h3');
+      title.textContent = item.name || '未命名项目';
+      const desc = document.createElement('p');
+      desc.textContent = item.goal || item.culture || '等待补充项目设定';
+      const count = document.createElement('span');
+      count.className = 'count';
+      count.textContent = item.branchOf ? '方案分支' : (item.mode === 'professional' ? '专业协作' : '新手引导');
+      card.append(title, desc, count);
+      card.onclick = () => switchProject(item.id);
+      grid.appendChild(card);
+    });
+    const createCard = document.createElement('article');
+    createCard.className = 'section-card';
+    createCard.style.cursor = 'pointer';
+    createCard.innerHTML = '<h3>＋ 新建创作项目</h3><p>建立完全独立的项目，不继承当前上下文。</p><span class="count">开始创作</span>';
+    createCard.onclick = () => createNewProject();
+    grid.appendChild(createCard);
+  }
+
+  function updateSpecView() {
+    document.getElementById('specCharacter').textContent = project.anchors.length
+      ? '不可变特征：' + project.anchors.join('；')
+      : '尚未锁定基准角色。请在创作工作台确认体型、五官、核心符号和标准色。';
+    document.getElementById('specCulture').textContent = project.sources.length
+      ? project.sources.map((source) => '[' + trustLabel(source.trust) + '] ' + source.claim).join('；')
+      : '尚无来源支持。AI 对具体文化事实应标记为“待核实”或“无法确认”。';
+    document.getElementById('specPrompt').textContent = MODEL_GUIDES[project.targetModel] + ' 当前项目已锁定 ' + project.anchors.length + ' 项核心特征。';
+  }
+
+  function renderAll(options = {}) {
+    messages = project.messages || [];
+    activeTopicTags = project.topicTags || [];
+    renderMode();
+    renderFields();
+    renderProjectHeader();
+    renderAnchors();
+    renderSources();
+    renderVersions();
+    renderProjectGrid();
+    updateSpecView();
+    renderConversation(options.greeting);
+  }
+
+  function revealComposerExtras() {
+    const visible = messages.length > 0;
+    cardBtn.style.display = visible ? 'inline-flex' : 'none';
+    promptBtn.style.display = visible ? 'inline-flex' : 'none';
+    exampleWrap.style.display = project.mode === 'guided' && !visible ? 'flex' : 'none';
+  }
+
+  function updateProjectFromText(text) {
+    const tags = detectTopics(text);
+    activeTopicTags = Array.from(new Set([...activeTopicTags, ...tags]));
+    if (!project.goal) project.goal = text;
+    if (!project.culture && tags.length) project.culture = tags.join(' / ');
+    if (project.name === '未命名项目') project.name = text.length > 18 ? text.slice(0, 18) + '…' : text;
+    renderFields();
+    renderProjectHeader();
+    persistProject();
+  }
+
+  function saveVersion(label, stateOverride) {
+    const version = {
+      id: makeId('version'),
+      label: label || '手动保存版本',
+      createdAt: new Date().toISOString(),
+      state: stateOverride || snapshotState(project)
+    };
+    project.versions.unshift(version);
+    project.versions = project.versions.slice(0, 30);
+    persistProject();
+    renderVersions();
+    return version;
+  }
+
+  function applySnapshot(state) {
+    project.name = state.name;
+    project.mode = state.mode;
+    project.targetModel = state.targetModel;
+    project.brief = state.brief;
+    project.goal = state.goal;
+    project.audience = state.audience;
+    project.culture = state.culture;
+    project.style = state.style;
+    project.anchors = [...state.anchors];
+    project.sources = state.sources.map((item) => ({ ...item }));
+    project.messages = state.messages.map((item) => ({ ...item }));
+    project.topicTags = [...state.topicTags];
+    persistProject();
+    renderAll();
+  }
+
+  function restoreVersion(versionId) {
+    const target = project.versions.find((version) => version.id === versionId);
+    if (!target) return;
+    const before = snapshotState(project);
+    saveVersion('恢复前自动备份', before);
+    applySnapshot(target.state);
+    showUndo('已恢复到「' + target.label + '」', () => applySnapshot(before));
+  }
+
+  function showUndo(text, action) {
+    clearTimeout(undoTimer);
+    undoAction = action;
+    undoTextEl.textContent = text;
+    undoBtn.style.display = action ? 'inline-block' : 'none';
+    undoToastEl.classList.add('visible');
+    undoTimer = setTimeout(() => {
+      undoToastEl.classList.remove('visible');
+      undoAction = null;
+    }, 10000);
+  }
+
+  function switchProject(projectId) {
+    if (!workspace.projects[projectId]) return;
+    persistProject(false);
+    workspace.currentProjectId = projectId;
+    project = workspace.projects[projectId];
+    persistProject(false);
+    renderAll();
+    showView('workbench');
+  }
+
+  function createNewProject(seed = {}) {
+    const previousId = project.id;
+    persistProject(false);
+    const next = createProject(seed);
+    workspace.projects[next.id] = next;
+    workspace.currentProjectId = next.id;
+    project = next;
+    persistProject();
+    renderAll();
+    showView('workbench');
+    showUndo('已创建独立新项目', () => switchProject(previousId));
+    return next;
+  }
+
+  function createBranch(label) {
+    const previousId = project.id;
+    const currentState = snapshotState(project);
+    saveVersion('创建分支前自动保存', currentState);
+    const branch = createProject({
+      ...currentState,
+      name: project.name + ' · ' + (label || '方案分支'),
+      branchOf: project.id,
+      versions: []
+    });
+    workspace.projects[branch.id] = branch;
+    workspace.currentProjectId = branch.id;
+    project = branch;
+    persistProject();
+    renderAll();
+    showView('workbench');
+    showUndo('已创建方案分支', () => switchProject(previousId));
+    return branch;
+  }
+
+  function startNewSession() {
+    const before = snapshotState(project);
+    saveVersion('新会话前自动保存', before);
+    messages = [];
+    project.messages = [];
+    project.topicTags = activeTopicTags;
+    persistProject();
+    renderConversation(GREETINGS.newSession);
+    renderVersions();
+    showUndo('已开启新会话，旧对话已保存', () => applySnapshot(before));
+  }
+
+  function addRouteCard(text, previousTags) {
+    const nextTags = detectTopics(text);
+    const card = document.createElement('div');
+    card.className = 'route-card';
+    const title = document.createElement('strong');
+    title.textContent = '检测到创作方向发生变化';
+    const desc = document.createElement('p');
+    desc.textContent = '新内容更接近「' + nextTags.join(' / ') + '」，当前项目是「' + previousTags.join(' / ') + '」。请选择如何处理：';
+    const actions = document.createElement('div');
+    actions.className = 'route-actions';
+    const continueBtn = document.createElement('button');
+    continueBtn.className = 'primary';
+    continueBtn.textContent = '继续当前项目';
+    const branchButton = document.createElement('button');
+    branchButton.textContent = '创建方案分支';
+    const newButton = document.createElement('button');
+    newButton.textContent = '建立独立项目';
+    actions.append(continueBtn, branchButton, newButton);
+    card.append(title, desc, actions);
+    chatEl.appendChild(card);
+    chatEl.scrollTop = chatEl.scrollHeight;
+    pendingRoute = { text, card };
+    continueBtn.onclick = () => resolveRoute('continue');
+    branchButton.onclick = () => resolveRoute('branch');
+    newButton.onclick = () => resolveRoute('new');
+  }
+
+  function resolveRoute(type) {
+    if (!pendingRoute) return;
+    const text = pendingRoute.text;
+    pendingRoute.card.remove();
+    pendingRoute = null;
+    if (type === 'branch') {
+      createBranch('新方向');
+      addMessageToUI('user', text);
+    } else if (type === 'new') {
+      createNewProject();
+      addMessageToUI('user', text);
+    }
+    commitMessage(text);
+  }
+
+  function commitMessage(text) {
+    updateProjectFromText(text);
+    messages.push({ role: 'user', content: text });
+    persistProject();
+    revealComposerExtras();
+    sendToAPI();
+  }
+
   function addLoading() {
     const div = document.createElement('div');
     div.className = 'msg msg-assistant msg-loading';
@@ -706,104 +1292,198 @@
     chatEl.appendChild(div);
     chatEl.scrollTop = chatEl.scrollHeight;
   }
+
   function removeLoading() {
-    const el = document.getElementById('loadingIndicator');
-    if (el) el.remove();
+    const loading = document.getElementById('loadingIndicator');
+    if (loading) loading.remove();
   }
 
   async function sendToAPI() {
     addLoading();
     sendBtn.disabled = true;
     cardBtn.disabled = true;
+    promptBtn.disabled = true;
     try {
-      const res = await fetch('/api/chat', {
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages })
+        body: JSON.stringify({
+          messages,
+          mode: project.mode,
+          targetModel: project.targetModel,
+          projectContext: projectContext()
+        })
       });
-      const data = await res.json();
+      const data = await response.json();
       removeLoading();
-      if (!res.ok) throw new Error(data.error || '请求失败');
+      if (!response.ok) throw new Error(data.error || '请求失败');
       messages.push({ role: 'assistant', content: data.reply });
+      project.messages = messages;
       addMessageToUI('assistant', data.reply, { isCard: awaitingCard });
-    } catch (err) {
+      persistProject();
+    } catch (error) {
       removeLoading();
-      addMessageToUI('assistant', '⚠️ 暂时无法获取回复（' + err.message + '），请稍后重试，或检查后台 API Key 配置。');
-      console.error(err);
+      addMessageToUI('assistant', '暂时无法获取回复（' + error.message + '）。请稍后重试，或检查 DeepSeek API Key 和账户余额。');
+      console.error(error);
     } finally {
       sendBtn.disabled = false;
       cardBtn.disabled = false;
+      promptBtn.disabled = false;
       awaitingCard = false;
     }
   }
 
-  function revealComposerExtras() {
-    exampleWrap.style.display = 'none';
-    cardBtn.style.display = 'inline-flex';
-  }
-
-  formEl.addEventListener('submit', (e) => {
-    e.preventDefault();
+  formEl.addEventListener('submit', (event) => {
+    event.preventDefault();
     const text = inputEl.value.trim();
     if (!text) return;
-    revealComposerExtras();
+    if (pendingRoute) {
+      alert('请先选择上一条新方向属于当前项目、方案分支还是独立项目。');
+      return;
+    }
     const previousTags = [...activeTopicTags];
     const needsRouting = shouldOfferRouting(text);
     inputEl.value = '';
     inputEl.style.height = 'auto';
-    updateProjectSummary(text);
     addMessageToUI('user', text);
     if (needsRouting) {
       addRouteCard(text, previousTags);
       return;
     }
-    messages.push({ role: 'user', content: text });
-    sendToAPI();
+    commitMessage(text);
   });
 
   cardBtn.addEventListener('click', () => {
-    const text = '请基于目前为止的讨论，直接为我汇总输出一份完整的《IP 视觉设定卡》，按标准结构呈现，方便我直接复制使用。';
+    const text = '请基于当前项目档案与讨论，输出完整《IP视觉设定卡》。必须区分文化事实、用户提供信息、待核实内容和创意转译，并列出不可变特征。';
     messages.push({ role: 'user', content: text });
-    addMessageToUI('user', '📋 生成完整设定卡');
+    addMessageToUI('user', '生成完整视觉设定卡');
     awaitingCard = true;
+    persistProject();
     sendToAPI();
   });
 
-  exampleWrap.querySelectorAll('.chip').forEach((chip) => {
-    chip.addEventListener('click', () => {
-      inputEl.value = chip.dataset.text;
-      formEl.requestSubmit();
+  promptBtn.addEventListener('click', () => {
+    const modelName = { doubao: '豆包', gpt: 'GPT生图', jimeng: '即梦' }[project.targetModel];
+    const text = '请基于当前项目档案，生成一套面向' + modelName + '的模型适配提示词。输出通用视觉Brief、不可变特征、模型专用提示词、排除项、推荐画幅、参考图建议和生成后检查清单。不要承诺生图结果必然稳定。';
+    messages.push({ role: 'user', content: text });
+    addMessageToUI('user', '生成' + modelName + '适配提示词');
+    persistProject();
+    sendToAPI();
+  });
+
+  document.getElementById('analyzeBriefBtn').addEventListener('click', () => {
+    const brief = briefInputEl.value.trim();
+    if (!brief) return;
+    project.brief = brief;
+    if (!project.goal) project.goal = brief;
+    persistProject();
+    renderFields();
+    const text = '这是我的专业Brief：\n' + brief + '\n\n请先提取固定约束、潜在冲突、缺失信息和开放探索空间，再提出三条有文化逻辑、创意差异和商业理由的方案路线。不要用ABC问卷引导我。';
+    addMessageToUI('user', text);
+    commitMessage(text);
+  });
+
+  modeBtns.forEach((button) => {
+    button.addEventListener('click', () => {
+      project.mode = button.dataset.mode;
+      persistProject();
+      renderMode();
+      renderConversation();
     });
   });
 
-  navBtns.forEach((button) => {
-    button.addEventListener('click', () => showView(button.dataset.view));
+  targetModelEl.addEventListener('change', () => {
+    project.targetModel = targetModelEl.value;
+    persistProject();
+    renderFields();
+    updateSpecView();
   });
-  document.querySelectorAll('[data-view-target]').forEach((button) => {
-    button.addEventListener('click', () => showView(button.dataset.viewTarget));
+
+  const fieldBindings = {
+    projectNameInput: 'name',
+    goalInput: 'goal',
+    audienceInput: 'audience',
+    cultureInput: 'culture',
+    styleInput: 'style'
+  };
+  Object.entries(fieldBindings).forEach(([elementId, key]) => {
+    document.getElementById(elementId).addEventListener('input', (event) => {
+      project[key] = event.target.value || (key === 'name' ? '未命名项目' : '');
+      renderProjectHeader();
+      updateSpecView();
+      scheduleSave();
+    });
   });
-  document.querySelectorAll('[data-open-workbench]').forEach((card) => {
-    card.addEventListener('click', () => showView('workbench'));
+  briefInputEl.addEventListener('input', () => { project.brief = briefInputEl.value; scheduleSave(); });
+
+  document.getElementById('addAnchorBtn').addEventListener('click', () => {
+    const input = document.getElementById('anchorInput');
+    const value = input.value.trim();
+    if (!value || project.anchors.includes(value)) return;
+    project.anchors.push(value);
+    input.value = '';
+    persistProject();
+    renderAnchors();
+    updateSpecView();
   });
-  newProjectBtn.addEventListener('click', () => {
-    resetProject();
-    showView('workbench');
+
+  document.getElementById('addSourceBtn').addEventListener('click', () => {
+    const claimEl = document.getElementById('sourceClaimInput');
+    const refEl = document.getElementById('sourceRefInput');
+    const trustEl = document.getElementById('sourceTrustInput');
+    const claim = claimEl.value.trim();
+    if (!claim) return;
+    project.sources.push({ id: makeId('source'), claim, reference: refEl.value.trim(), trust: trustEl.value });
+    claimEl.value = '';
+    refEl.value = '';
+    trustEl.value = 'user';
+    persistProject();
+    renderSources();
+    updateSpecView();
   });
-  restartBtn.addEventListener('click', () => resetProject());
+
+  document.querySelectorAll('.panel-tab').forEach((button) => button.addEventListener('click', () => showPanelPane(button.dataset.pane)));
+  document.getElementById('saveVersionBtn').addEventListener('click', () => {
+    const label = prompt('给这个版本起个名字：', '手动保存版本');
+    if (label === null) return;
+    saveVersion(label || '手动保存版本');
+    showUndo('版本已保存', null);
+  });
+  document.getElementById('branchBtn').addEventListener('click', () => {
+    const label = prompt('给新分支起个名字：', '方案分支');
+    if (label === null) return;
+    createBranch(label || '方案分支');
+  });
+
+  undoBtn.addEventListener('click', () => {
+    if (undoAction) undoAction();
+    undoToastEl.classList.remove('visible');
+    undoAction = null;
+    clearTimeout(undoTimer);
+  });
+
+  exampleWrap.querySelectorAll('.chip').forEach((chip) => {
+    chip.addEventListener('click', () => { inputEl.value = chip.dataset.text; formEl.requestSubmit(); });
+  });
+  navBtns.forEach((button) => button.addEventListener('click', () => showView(button.dataset.view)));
+  document.querySelectorAll('[data-view-target]').forEach((button) => button.addEventListener('click', () => showView(button.dataset.viewTarget)));
+  newProjectBtn.addEventListener('click', () => createNewProject({ mode: project.mode, targetModel: project.targetModel }));
+  restartBtn.addEventListener('click', () => {
+    if (confirm('开启同项目新会话？当前聊天会自动保存为历史版本，项目设定、不可变特征和文化证据不会删除。')) startNewSession();
+  });
 
   inputEl.addEventListener('input', () => {
     inputEl.style.height = 'auto';
     inputEl.style.height = Math.min(inputEl.scrollHeight, 140) + 'px';
   });
-  inputEl.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
+  inputEl.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
       formEl.requestSubmit();
     }
   });
 
-  // 首次加载：展示开场白（本地静态文案，不消耗 API 调用）
-  addMessageToUI('assistant', GREETING);
+  renderAll();
 </script>
 
 </body>
