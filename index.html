@@ -36,10 +36,71 @@
 
   /* ---------- Header ---------- */
   header{
-    padding: 28px 20px 18px;
+    padding: 18px 24px 0;
     border-bottom: 1px solid var(--ink-line);
-    text-align:center;
+    text-align:left;
     background: linear-gradient(180deg, var(--ink) 0%, var(--ink) 85%, var(--ink-2) 100%);
+  }
+  .header-top{
+    max-width:1180px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .brand{
+    color:var(--text-hi);
+    font-family:'Noto Serif SC', serif;
+    font-size:17px;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .brand small{
+    display:block;
+    color:var(--jade);
+    font-family:'Noto Sans SC', sans-serif;
+    font-size:10px;
+    letter-spacing:.16em;
+    font-weight:500;
+    margin-top:3px;
+  }
+  .top-nav{
+    display:flex;
+    align-items:center;
+    gap:4px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .top-nav::-webkit-scrollbar{ display:none; }
+  .nav-btn{
+    border:0;
+    border-bottom:2px solid transparent;
+    background:transparent;
+    color:var(--text-lo);
+    font-family:'Noto Sans SC', sans-serif;
+    font-size:13px;
+    padding:12px 10px 11px;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .nav-btn:hover,.nav-btn.active{ color:var(--text-hi); border-bottom-color:var(--vermilion); }
+  .new-project-btn{
+    border:1px solid var(--jade);
+    background:transparent;
+    color:var(--jade);
+    border-radius:6px;
+    font-family:'Noto Sans SC', sans-serif;
+    font-size:12px;
+    padding:8px 11px;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .new-project-btn:hover{ background:var(--jade); color:var(--ink); }
+  .header-intro{
+    max-width:720px;
+    margin:22px auto 18px;
+    text-align:center;
   }
   .eyebrow{
     font-size:12px;
@@ -68,13 +129,114 @@
   main{
     flex:1;
     width:100%;
-    max-width: 720px;
+    max-width: 1180px;
     margin: 0 auto;
     display:flex;
     flex-direction:column;
     min-height:0;
     padding: 0 16px;
   }
+
+  .view{ display:none; min-height:0; }
+  .view.active{ display:block; }
+  .view-heading{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:16px;
+    padding:24px 0 14px;
+    border-bottom:1px solid var(--ink-line);
+  }
+  .view-heading h2{
+    margin:0;
+    font-family:'Noto Serif SC',serif;
+    font-size:22px;
+    font-weight:600;
+  }
+  .view-heading p{ margin:5px 0 0; color:var(--text-lo); font-size:13px; }
+  .view-heading .meta{ color:var(--jade); font-size:12px; white-space:nowrap; }
+  .workbench-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 280px;
+    gap:18px;
+    min-height:0;
+  }
+  .workbench-chat{ min-width:0; display:flex; flex-direction:column; min-height:0; }
+  .project-panel{
+    margin-top:18px;
+    border-left:1px solid var(--ink-line);
+    padding-left:18px;
+  }
+  .panel-label{
+    color:var(--jade);
+    font-size:11px;
+    letter-spacing:.12em;
+    margin-bottom:10px;
+  }
+  .project-title{ font-size:17px; font-weight:700; margin-bottom:4px; }
+  .project-status{ color:var(--text-lo); font-size:12px; margin-bottom:16px; }
+  .summary-list{ display:grid; gap:10px; }
+  .summary-item{ border-top:1px solid var(--ink-line); padding-top:9px; }
+  .summary-item span{ display:block; color:var(--text-lo); font-size:11px; margin-bottom:4px; }
+  .summary-item strong{ display:block; font-size:13px; line-height:1.5; font-weight:500; }
+  .panel-link{
+    width:100%;
+    margin-top:16px;
+    border:1px solid var(--ink-line);
+    background:var(--ink-2);
+    color:var(--text-hi);
+    border-radius:6px;
+    text-align:left;
+    padding:10px 12px;
+    cursor:pointer;
+    font-family:'Noto Sans SC', sans-serif;
+    font-size:12px;
+  }
+  .panel-link:hover{ border-color:var(--jade); }
+  .route-card{
+    align-self:flex-start;
+    width:min(100%,640px);
+    border:1px solid var(--jade);
+    border-left:3px solid var(--vermilion);
+    background:var(--ink-2);
+    color:var(--text-hi);
+    padding:14px 16px;
+    border-radius:6px;
+  }
+  .route-card strong{ display:block; color:var(--paper); margin-bottom:6px; }
+  .route-card p{ margin:0; color:var(--text-lo); font-size:13px; line-height:1.65; }
+  .route-actions{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .route-actions button{
+    border:1px solid var(--ink-line);
+    border-radius:5px;
+    padding:8px 11px;
+    background:transparent;
+    color:var(--text-hi);
+    font-family:'Noto Sans SC', sans-serif;
+    font-size:12px;
+    cursor:pointer;
+  }
+  .route-actions button.primary{ background:var(--vermilion); border-color:var(--vermilion); color:#fff; }
+  .route-actions button:hover{ border-color:var(--jade); }
+  .route-actions button.primary:hover{ background:var(--vermilion-dim); }
+  .section-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; padding:20px 0 30px; }
+  .section-card{
+    border:1px solid var(--ink-line);
+    background:var(--ink-2);
+    border-radius:6px;
+    padding:16px;
+    min-height:132px;
+  }
+  .section-card h3{ margin:0 0 8px; color:var(--paper); font-size:16px; }
+  .section-card p{ margin:0; color:var(--text-lo); font-size:13px; line-height:1.7; }
+  .section-card .count{ display:block; color:var(--jade); font-size:24px; margin-top:12px; font-family:'Noto Serif SC',serif; }
+  .spec-layout{ display:grid; grid-template-columns:1.15fr .85fr; gap:16px; padding:20px 0 30px; }
+  .spec-block{ border-top:1px solid var(--ink-line); padding:14px 0; }
+  .spec-block h3{ margin:0 0 8px; color:var(--paper); font-size:15px; }
+  .spec-block p{ margin:0; color:var(--text-lo); font-size:13px; line-height:1.7; }
+  .tag-list{ display:flex; flex-wrap:wrap; gap:7px; }
+  .tag{ border:1px solid var(--ink-line); border-radius:999px; color:var(--text-lo); padding:5px 9px; font-size:12px; }
+  .empty-state{ padding:42px 0; text-align:center; border:1px dashed var(--ink-line); color:var(--text-lo); font-size:13px; }
 
   #examples{
     display:flex;
@@ -269,35 +431,117 @@
   }
 
   @media (max-width: 480px){
+    header{ padding-left:14px; padding-right:14px; }
+    .header-top{ align-items:flex-start; flex-wrap:wrap; gap:8px; }
+    .top-nav{ order:3; width:100%; }
+    .nav-btn{ padding-left:7px; padding-right:7px; }
+    .new-project-btn{ margin-left:auto; }
+    .header-intro{ margin-top:16px; }
     .msg{ max-width:94%; }
+    .workbench-grid,.spec-layout{ grid-template-columns:1fr; }
+    .project-panel{ border-left:0; border-top:1px solid var(--ink-line); padding:16px 0 22px; margin-top:0; }
+    .section-grid{ grid-template-columns:1fr; }
+    .view-heading{ align-items:flex-start; flex-direction:column; gap:5px; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="eyebrow">文创 IP 前期开发 · 创意工作台</div>
-  <h1>AI IP 视觉设定助手</h1>
-  <p>从一句模糊的文化想法出发，一步步理清方向、拆解文化元素、设定视觉风格，最后整理成一份完整的角色设定与提示词方案。</p>
+  <div class="header-top">
+    <div class="brand">AI IP 视觉设定助手<small>CREATIVE WORKSPACE</small></div>
+    <nav class="top-nav" aria-label="主导航">
+      <button class="nav-btn" data-view="projects" type="button">项目库</button>
+      <button class="nav-btn active" data-view="workbench" type="button">创作工作台</button>
+      <button class="nav-btn" data-view="spec" type="button">视觉设定</button>
+      <button class="nav-btn" data-view="assets" type="button">资产库</button>
+      <button class="nav-btn" data-view="inspiration" type="button">灵感库</button>
+    </nav>
+    <button class="new-project-btn" id="newProjectBtn" type="button">＋ 新项目</button>
+  </div>
+  <div class="header-intro">
+    <div class="eyebrow">文创 IP 前期开发 · 创意工作台</div>
+    <h1>AI IP 视觉设定助手</h1>
+    <p>从一句模糊的文化想法出发，一步步理清方向、拆解文化元素、设定视觉风格，最后整理成一份完整的角色设定与提示词方案。</p>
+  </div>
 </header>
 
 <main>
-  <div id="examples">
-    <button class="chip" data-text="我想做一个客家非遗相关的文创 IP，但不知道从哪里开始。">客家非遗文创 IP</button>
-    <button class="chip" data-text="我想做一个古事纪神话角色，风格偏东方奇幻。">古事纪神话角色</button>
-    <button class="chip" data-text="我想做一个敦煌壁画主题的 IP 形象。">敦煌壁画 IP</button>
-    <button class="chip" data-text="我想做苗绣主题的文创产品系列。">苗绣文创系列</button>
-  </div>
+  <section class="view" id="projectsView">
+    <div class="view-heading"><div><h2>项目库</h2><p>管理不同文化 IP 项目，继续上次的创作。</p></div><span class="meta">2 个项目</span></div>
+    <div class="section-grid">
+      <article class="section-card" data-open-workbench>
+        <h3>古事纪 · 神话角色</h3><p>东方奇幻角色设定与视觉探索</p><span class="count">进行中 · 68%</span>
+      </article>
+      <article class="section-card" data-open-workbench>
+        <h3>客家非遗文创 IP</h3><p>文化元素与日常产品结合方向</p><span class="count">草稿 · 12%</span>
+      </article>
+      <article class="section-card" data-open-workbench>
+        <h3>＋ 新建创作项目</h3><p>从一句文化想法开始建立新的设定档案</p><span class="count">开始创作</span>
+      </article>
+    </div>
+  </section>
 
-  <div id="chat"></div>
+  <section class="view active" id="workbenchView">
+    <div class="view-heading"><div><h2>创作工作台</h2><p>通过会话分阶段确定文化、角色、视觉与产品方向。</p></div><span class="meta" id="workbenchStatus">当前项目 · 未命名</span></div>
+    <div class="workbench-grid">
+      <div class="workbench-chat">
+        <div id="examples">
+          <button class="chip" data-text="我想做一个客家非遗相关的文创 IP，但不知道从哪里开始。">客家非遗文创 IP</button>
+          <button class="chip" data-text="我想做一个古事纪神话角色，风格偏东方奇幻。">古事纪神话角色</button>
+          <button class="chip" data-text="我想做一个敦煌壁画主题的 IP 形象。">敦煌壁画 IP</button>
+          <button class="chip" data-text="我想做苗绣主题的文创产品系列。">苗绣文创系列</button>
+        </div>
+        <div id="chat"></div>
+        <div id="composerWrap">
+          <button id="cardBtn" type="button">📋 基于目前讨论，生成完整设定卡</button>
+          <form id="composer">
+            <textarea id="userInput" placeholder="说出你的文化 IP 想法，比如：我想做一个客家非遗 IP……" rows="1"></textarea>
+            <button id="sendBtn" type="submit">发送</button>
+          </form>
+        </div>
+      </div>
+      <aside class="project-panel">
+        <div class="panel-label">CURRENT PROJECT</div>
+        <div class="project-title" id="projectTitle">未命名项目</div>
+        <div class="project-status" id="projectStatus">等待确定创作方向</div>
+        <div class="summary-list">
+          <div class="summary-item"><span>创作目标</span><strong id="summaryGoal">尚未确定</strong></div>
+          <div class="summary-item"><span>文化主题</span><strong id="summaryCulture">等待 AI 提取</strong></div>
+          <div class="summary-item"><span>视觉方向</span><strong id="summaryStyle">等待用户选择</strong></div>
+          <div class="summary-item"><span>下一步</span><strong id="summaryNext">先告诉我一个模糊想法</strong></div>
+        </div>
+        <button class="panel-link" data-view-target="spec" type="button">查看视觉设定 →</button>
+        <button class="panel-link" id="restartBtn" type="button">↻ 重新开始当前项目</button>
+      </aside>
+    </div>
+  </section>
 
-  <div id="composerWrap">
-    <button id="cardBtn" type="button">📋 基于目前讨论，生成完整设定卡</button>
-    <form id="composer">
-      <textarea id="userInput" placeholder="说出你的文化 IP 想法，比如：我想做一个客家非遗 IP……" rows="1"></textarea>
-      <button id="sendBtn" type="submit">发送</button>
-    </form>
-  </div>
+  <section class="view" id="specView">
+    <div class="view-heading"><div><h2>视觉设定</h2><p>把对话中的创意沉淀为可查看、可修改、可复用的设定档案。</p></div><span class="meta">实时预览</span></div>
+    <div class="spec-layout">
+      <div>
+        <div class="spec-block"><h3>角色设定</h3><p id="specCharacter">完成创作工作台的引导后，这里会显示角色身份、性格、外观特征与故事锚点。</p></div>
+        <div class="spec-block"><h3>文化元素</h3><p id="specCulture">这里会展示 AI 提取并经用户确认的文化符号、材质、器物、纹样与使用边界。</p></div>
+        <div class="spec-block"><h3>提示词包</h3><p id="specPrompt">这里会按角色、场景、海报、文创产品分类整理可复制的提示词。</p></div>
+      </div>
+      <div>
+        <div class="spec-block"><h3>风格关键词</h3><div class="tag-list"><span class="tag">等待选择</span><span class="tag">东方气质</span><span class="tag">文化转译</span></div></div>
+        <div class="spec-block"><h3>标准色彩</h3><div class="tag-list"><span class="tag">主色待定</span><span class="tag">辅助色待定</span><span class="tag">强调色待定</span></div></div>
+        <div class="spec-block"><h3>文创延展</h3><p>冰箱贴、扇面、挂件、包装与海报等产品方向将在方案确认后生成。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="assetsView">
+    <div class="view-heading"><div><h2>资产库</h2><p>保存已经确认的角色卡、提示词包与视觉素材。</p></div><span class="meta">0 个已保存资产</span></div>
+    <div class="section-grid"><article class="section-card"><h3>角色卡</h3><p>保存角色身份、外观、性格与故事设定。</p><span class="count">0</span></article><article class="section-card"><h3>提示词包</h3><p>按形象、海报、场景、产品分类整理。</p><span class="count">0</span></article><article class="section-card"><h3>产品方向</h3><p>记录文化元素与冰箱贴、扇子等产品的结合方案。</p><span class="count">0</span></article></div>
+  </section>
+
+  <section class="view" id="inspirationView">
+    <div class="view-heading"><div><h2>灵感库</h2><p>收藏文化元素、参考风格与优秀案例，支持后续创作调用。</p></div><span class="meta">0 个收藏</span></div>
+    <div class="section-grid"><article class="section-card"><h3>文化元素</h3><p>地域文化、非遗工艺、神话传说、建筑与器物。</p><span class="count">收藏</span></article><article class="section-card"><h3>参考风格</h3><p>色彩、构图、材质与视觉语言参考。</p><span class="count">收藏</span></article><article class="section-card"><h3>优秀案例</h3><p>记录你认为审美与商业价值都在线的 IP 产品。</p><span class="count">收藏</span></article></div>
+  </section>
 </main>
 
 <footer>AI 生成内容仅供创意参考，具体文化细节建议自行核实后使用。</footer>
@@ -311,11 +555,119 @@
   const exampleWrap = document.getElementById('examples');
   const cardBtn = document.getElementById('cardBtn');
   const sendBtn = document.getElementById('sendBtn');
+  const navBtns = document.querySelectorAll('.nav-btn');
+  const newProjectBtn = document.getElementById('newProjectBtn');
+  const restartBtn = document.getElementById('restartBtn');
 
   let messages = [];
   let awaitingCard = false;
+  let pendingRoute = null;
+  let activeTopicTags = [];
+
+  const TOPIC_RULES = [
+    { name: '神话角色', pattern: /古事纪|神话|神兽|角色|东方奇幻|人物/ },
+    { name: '非遗文创', pattern: /非遗|文创|冰箱贴|扇子|挂件|产品|伴手礼/ },
+    { name: '敦煌文化', pattern: /敦煌|壁画|飞天/ },
+    { name: '苗绣文化', pattern: /苗绣|刺绣|苗族/ },
+    { name: '海报视觉', pattern: /海报|宣传|视觉海报|广告/ }
+  ];
 
   const GREETING = "你好，我是 **AI IP 视觉设定助手**。\n\n告诉我一个你想做的文化 IP 方向——哪怕只是一句很模糊的想法，我会一步步帮你理清方向、拆解可用的文化元素、设定角色外观与色彩风格，最后整理成一套完整的设定卡和 AI 绘图提示词。\n\n可以直接打字，也可以点上面的示例试试看。";
+  const NEW_PROJECT_GREETING = "已开启新的创作项目。\n\n这次我不会沿用上一个项目的文化、角色和风格设定。请告诉我新的文化 IP 想法，哪怕只有一句话也可以。";
+
+  function detectTopics(text) {
+    return TOPIC_RULES.filter((rule) => rule.pattern.test(text)).map((rule) => rule.name);
+  }
+
+  function shouldOfferRouting(text) {
+    if (!messages.some((item) => item.role === 'user')) return false;
+    const nextTags = detectTopics(text);
+    if (!nextTags.length || !activeTopicTags.length) return false;
+    return nextTags.some((tag) => !activeTopicTags.includes(tag));
+  }
+
+  function showView(viewName) {
+    document.querySelectorAll('.view').forEach((view) => {
+      view.classList.toggle('active', view.id === viewName + 'View');
+    });
+    navBtns.forEach((button) => button.classList.toggle('active', button.dataset.view === viewName));
+  }
+
+  function updateProjectSummary(text) {
+    const tags = detectTopics(text);
+    activeTopicTags = Array.from(new Set([...activeTopicTags, ...tags]));
+    const shortTitle = text.length > 18 ? text.slice(0, 18) + '…' : text;
+    document.getElementById('projectTitle').textContent = shortTitle || '未命名项目';
+    document.getElementById('workbenchStatus').textContent = '当前项目 · ' + (shortTitle || '未命名');
+    document.getElementById('projectStatus').textContent = '创作方向已进入引导';
+    document.getElementById('summaryGoal').textContent = text;
+    document.getElementById('summaryCulture').textContent = activeTopicTags.length ? activeTopicTags.join(' / ') : '等待 AI 提取';
+    document.getElementById('summaryNext').textContent = '确认文化元素与视觉风格';
+  }
+
+  function addRouteCard(text, previousTags = activeTopicTags) {
+    const nextTags = detectTopics(text);
+    const card = document.createElement('div');
+    card.className = 'route-card';
+    card.innerHTML = '<strong>检测到创作方向发生变化</strong><p>你刚刚提到的是「' + nextTags.join(' / ') + '」。它可能和当前项目「' + previousTags.join(' / ') + '」有关，也可能是一个全新的创作想法。请选择会话处理方式：</p>';
+    const actions = document.createElement('div');
+    actions.className = 'route-actions';
+    const continueBtn = document.createElement('button');
+    continueBtn.className = 'primary';
+    continueBtn.type = 'button';
+    continueBtn.textContent = '继续当前项目';
+    const newBtn = document.createElement('button');
+    newBtn.type = 'button';
+    newBtn.textContent = '开启新项目';
+    actions.append(continueBtn, newBtn);
+    card.appendChild(actions);
+    chatEl.appendChild(card);
+    chatEl.scrollTop = chatEl.scrollHeight;
+    pendingRoute = { text, card };
+    continueBtn.onclick = () => {
+      if (!pendingRoute) return;
+      const pending = pendingRoute.text;
+      pendingRoute = null;
+      card.remove();
+      commitMessage(pending, 'continue');
+    };
+    newBtn.onclick = () => {
+      if (!pendingRoute) return;
+      const pending = pendingRoute.text;
+      pendingRoute = null;
+      resetProject(false);
+      commitMessage(pending, 'new');
+    };
+  }
+
+  function commitMessage(text, mode) {
+    if (mode === 'new') {
+      updateProjectSummary(text);
+      addMessageToUI('user', text);
+    } else {
+      updateProjectSummary(text);
+    }
+    messages.push({ role: 'user', content: text });
+    sendToAPI();
+  }
+
+  function resetProject(showGreeting = true) {
+    messages = [];
+    activeTopicTags = [];
+    pendingRoute = null;
+    awaitingCard = false;
+    chatEl.innerHTML = '';
+    exampleWrap.style.display = 'flex';
+    cardBtn.style.display = 'none';
+    document.getElementById('projectTitle').textContent = '未命名项目';
+    document.getElementById('workbenchStatus').textContent = '当前项目 · 未命名';
+    document.getElementById('projectStatus').textContent = '等待确定创作方向';
+    document.getElementById('summaryGoal').textContent = '尚未确定';
+    document.getElementById('summaryCulture').textContent = '等待 AI 提取';
+    document.getElementById('summaryStyle').textContent = '等待用户选择';
+    document.getElementById('summaryNext').textContent = '先告诉我一个模糊想法';
+    if (showGreeting) addMessageToUI('assistant', NEW_PROJECT_GREETING);
+  }
 
   function addMessageToUI(role, content, opts = {}) {
     const div = document.createElement('div');
@@ -395,10 +747,17 @@
     const text = inputEl.value.trim();
     if (!text) return;
     revealComposerExtras();
-    messages.push({ role: 'user', content: text });
-    addMessageToUI('user', text);
+    const previousTags = [...activeTopicTags];
+    const needsRouting = shouldOfferRouting(text);
     inputEl.value = '';
     inputEl.style.height = 'auto';
+    updateProjectSummary(text);
+    addMessageToUI('user', text);
+    if (needsRouting) {
+      addRouteCard(text, previousTags);
+      return;
+    }
+    messages.push({ role: 'user', content: text });
     sendToAPI();
   });
 
@@ -416,6 +775,21 @@
       formEl.requestSubmit();
     });
   });
+
+  navBtns.forEach((button) => {
+    button.addEventListener('click', () => showView(button.dataset.view));
+  });
+  document.querySelectorAll('[data-view-target]').forEach((button) => {
+    button.addEventListener('click', () => showView(button.dataset.viewTarget));
+  });
+  document.querySelectorAll('[data-open-workbench]').forEach((card) => {
+    card.addEventListener('click', () => showView('workbench'));
+  });
+  newProjectBtn.addEventListener('click', () => {
+    resetProject();
+    showView('workbench');
+  });
+  restartBtn.addEventListener('click', () => resetProject());
 
   inputEl.addEventListener('input', () => {
     inputEl.style.height = 'auto';
