@@ -735,12 +735,30 @@
 
 <div class="undo-toast" id="undoToast"><span id="undoText">操作已保存</span><button id="undoBtn" type="button">撤销</button></div>
 
-<footer>AI 生成内容仅供创意参考，具体文化细节建议自行核实后使用。</footer>
+<footer>AI 生成内容仅供创意参考，具体文化细节建议自行核实后使用。本站仅记录匿名使用统计，不保存完整聊天内容。</footer>
 
 <script>
   marked.setOptions({ breaks: true });
 
   const STORAGE_KEY = 'ai-ip-workspace-v3';
+  const ANON_USER_ID_KEY = 'lingou-anonymous-user-id-v1';
+  const SESSION_ID_KEY = 'lingou-session-id-v1';
+  const anonUserId = (() => {
+    const existing = localStorage.getItem(ANON_USER_ID_KEY);
+    if (existing) return existing;
+    const next = makeId('anonymous');
+    localStorage.setItem(ANON_USER_ID_KEY, next);
+    return next;
+  })();
+  const sessionId = (() => {
+    const existing = sessionStorage.getItem(SESSION_ID_KEY);
+    if (existing) return existing;
+    const next = makeId('session');
+    sessionStorage.setItem(SESSION_ID_KEY, next);
+    return next;
+  })();
+  let currentStep = '创作方向输入';
+  let sessionStartedAt = Date.now();
   const chatEl = document.getElementById('chat');
   const formEl = document.getElementById('composer');
   const inputEl = document.getElementById('userInput');
@@ -828,6 +846,41 @@
   let undoTimer = null;
   let undoAction = null;
 
+  function getTopicType() {
+    return activeTopicTags.length ? activeTopicTags.join(' / ') : '未识别';
+  }
+
+  function trackEvent(eventName, extra = {}) {
+    const payload = {
+      eventName,
+      anonymousUserId: anonUserId,
+      sessionId,
+      occurredAt: new Date().toISOString(),
+      mode: project?.mode || 'guided',
+      targetModel: project?.targetModel || 'doubao',
+      topicType: getTopicType(),
+      settingCardCompleted: Boolean(extra.settingCardCompleted),
+      exitStep: extra.exitStep || currentStep,
+      durationSeconds: Math.max(0, Math.round((Date.now() - sessionStartedAt) / 1000)),
+      ...extra
+    };
+    const body = JSON.stringify(payload);
+    if (eventName === 'session_exit' && navigator.sendBeacon) {
+      navigator.sendBeacon('/api/track', new Blob([body], { type: 'application/json' }));
+      return;
+    }
+    fetch('/api/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body,
+      keepalive: true
+    }).catch(() => {});
+  }
+
+  function setCurrentStep(step) {
+    currentStep = step;
+  }
+
   function snapshotState(source = project) {
     return {
       name: source.name,
@@ -899,6 +952,8 @@
   function showView(viewName) {
     document.querySelectorAll('.view').forEach((view) => view.classList.toggle('active', view.id === viewName + 'View'));
     navBtns.forEach((button) => button.classList.toggle('active', button.dataset.view === viewName));
+    const stepNames = { projects: '项目库浏览', workbench: '创作工作台', spec: '视觉设定查看', assets: '资产库浏览', inspiration: '灵感库浏览' };
+    setCurrentStep(stepNames[viewName] || viewName);
   }
 
   function showPanelPane(name) {
@@ -1118,6 +1173,7 @@
   function updateProjectFromText(text) {
     const tags = detectTopics(text);
     activeTopicTags = Array.from(new Set([...activeTopicTags, ...tags]));
+    if (tags.length) trackEvent('topic_detected', { topicType: activeTopicTags.join(' / ') });
     if (!project.goal) project.goal = text;
     if (!project.culture && tags.length) project.culture = tags.join(' / ');
     if (project.name === '未命名项目') project.name = text.length > 18 ? text.slice(0, 18) + '…' : text;
@@ -1228,6 +1284,8 @@
     messages = [];
     project.messages = [];
     project.topicTags = activeTopicTags;
+    setCurrentStep('同项目新会话');
+    trackEvent('new_session');
     persistProject();
     renderConversation(GREETINGS.newSession);
     renderVersions();
@@ -1235,6 +1293,7 @@
   }
 
   function addRouteCard(text, previousTags) {
+    setCurrentStep('创作方向分流');
     const nextTags = detectTopics(text);
     const card = document.createElement('div');
     card.className = 'route-card';
@@ -1277,6 +1336,7 @@
   }
 
   function commitMessage(text) {
+    setCurrentStep('AI 方案生成');
     updateProjectFromText(text);
     messages.push({ role: 'user', content: text });
     persistProject();
@@ -1319,6 +1379,8 @@
       if (!response.ok) throw new Error(data.error || '请求失败');
       messages.push({ role: 'assistant', content: data.reply });
       project.messages = messages;
+      setCurrentStep(awaitingCard ? '设定卡已生成' : 'AI 回复完成');
+      if (awaitingCard) trackEvent('setting_card_completed', { settingCardCompleted: true, exitStep: '设定卡已生成' });
       addMessageToUI('assistant', data.reply, { isCard: awaitingCard });
       persistProject();
     } catch (error) {
@@ -1386,6 +1448,8 @@
   modeBtns.forEach((button) => {
     button.addEventListener('click', () => {
       project.mode = button.dataset.mode;
+      setCurrentStep('工作模式选择');
+      trackEvent('mode_change');
       persistProject();
       renderMode();
       renderConversation();
@@ -1394,6 +1458,8 @@
 
   targetModelEl.addEventListener('change', () => {
     project.targetModel = targetModelEl.value;
+    setCurrentStep('目标模型选择');
+    trackEvent('model_change');
     persistProject();
     renderFields();
     updateSpecView();
@@ -1484,6 +1550,10 @@
   });
 
   renderAll();
+  trackEvent('session_start', { sessionStartedAt: new Date(sessionStartedAt).toISOString() });
+  window.addEventListener('pagehide', () => {
+    trackEvent('session_exit', { exitStep: currentStep, settingCardCompleted: false });
+  });
 </script>
 
 </body>

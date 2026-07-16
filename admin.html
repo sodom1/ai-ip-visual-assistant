@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>灵构使用统计</title>
+  <style>
+    :root { color-scheme: dark; --bg:#191c29; --panel:#23273a; --line:#3a3f58; --text:#f4eedc; --muted:#a9aec4; --accent:#b23e1f; --jade:#79a99b; }
+    * { box-sizing:border-box; }
+    body { margin:0; padding:32px 18px; background:var(--bg); color:var(--text); font:14px/1.6 Arial,"Microsoft YaHei",sans-serif; }
+    main { max-width:1100px; margin:auto; }
+    h1 { margin:0; font:700 28px/1.3 Georgia,"Microsoft YaHei",serif; }
+    .sub { color:var(--muted); margin:7px 0 22px; }
+    .auth { display:flex; gap:10px; margin-bottom:22px; }
+    input,button { border:1px solid var(--line); border-radius:6px; padding:10px 12px; font:inherit; }
+    input { flex:1; min-width:0; background:var(--panel); color:var(--text); }
+    button { background:var(--accent); color:#fff; cursor:pointer; }
+    button:hover { filter:brightness(1.1); }
+    #status { color:var(--muted); min-height:24px; margin-bottom:14px; }
+    .cards { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-bottom:20px; }
+    .card { background:var(--panel); border:1px solid var(--line); border-radius:7px; padding:14px; }
+    .card span { display:block; color:var(--muted); font-size:12px; }
+    .card strong { display:block; color:var(--jade); font-size:25px; margin-top:3px; }
+    .panel { background:var(--panel); border:1px solid var(--line); border-radius:7px; padding:16px; margin-bottom:18px; overflow:auto; }
+    h2 { margin:0 0 12px; font-size:16px; }
+    .breakdown { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+    .breakdown p { margin:0; color:var(--muted); white-space:pre-line; }
+    table { border-collapse:collapse; width:100%; min-width:850px; }
+    th,td { border-bottom:1px solid var(--line); text-align:left; padding:9px 8px; vertical-align:top; }
+    th { color:var(--jade); font-weight:500; }
+    td { color:var(--muted); font-size:12px; }
+    .ok { color:#9bd4a5; }
+    @media (max-width:700px) { .cards,.breakdown { grid-template-columns:repeat(2,minmax(0,1fr)); } .auth { flex-direction:column; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>「灵构」使用统计</h1>
+    <p class="sub">仅管理员密钥可读取。系统不保存访客的完整聊天内容。</p>
+    <form class="auth" id="authForm">
+      <input id="adminKey" type="password" autocomplete="off" placeholder="输入 Vercel 环境变量 STATS_ADMIN_KEY">
+      <button type="submit">查看统计</button>
+    </form>
+    <div id="status">请输入管理员密钥后查看。</div>
+    <section id="dashboard" hidden>
+      <div class="cards">
+        <div class="card"><span>使用会话数</span><strong id="totalSessions">0</strong></div>
+        <div class="card"><span>完成设定卡</span><strong id="completedSessions">0</strong></div>
+        <div class="card"><span>事件总数</span><strong id="totalEvents">0</strong></div>
+        <div class="card"><span>统计生成时间</span><strong id="generatedAt">-</strong></div>
+      </div>
+      <section class="panel breakdown">
+        <div><h2>使用模式</h2><p id="modeCounts">-</p></div>
+        <div><h2>目标模型</h2><p id="modelCounts">-</p></div>
+        <div><h2>创作主题</h2><p id="topicCounts">-</p></div>
+      </section>
+      <section class="panel">
+        <h2>匿名会话记录</h2>
+        <table>
+          <thead><tr><th>匿名用户 ID</th><th>使用时间</th><th>模式</th><th>目标模型</th><th>创作主题</th><th>设定卡</th><th>最后步骤</th><th>时长</th></tr></thead>
+          <tbody id="sessionRows"></tbody>
+        </table>
+      </section>
+    </section>
+  </main>
+  <script>
+    const form = document.getElementById('authForm');
+    const keyInput = document.getElementById('adminKey');
+    const status = document.getElementById('status');
+    const dashboard = document.getElementById('dashboard');
+
+    function listText(values) {
+      const entries = Object.entries(values || {});
+      return entries.length ? entries.map(([key, value]) => `${key}: ${value}`).join('\n') : '暂无数据';
+    }
+
+    function formatTime(value) {
+      return value ? new Date(value).toLocaleString('zh-CN') : '-';
+    }
+
+    function render(data) {
+      document.getElementById('totalSessions').textContent = data.totalSessions;
+      document.getElementById('completedSessions').textContent = data.completedSessions;
+      document.getElementById('totalEvents').textContent = data.totalEvents;
+      document.getElementById('generatedAt').textContent = formatTime(data.generatedAt);
+      document.getElementById('modeCounts').textContent = listText(data.modeCounts);
+      document.getElementById('modelCounts').textContent = listText(data.modelCounts);
+      document.getElementById('topicCounts').textContent = listText(data.topicCounts);
+      const rows = document.getElementById('sessionRows');
+      rows.innerHTML = '';
+      (data.sessions || []).forEach((item) => {
+        const row = document.createElement('tr');
+        [item.anonymousUserId, formatTime(item.lastSeenAt), item.mode === 'professional' ? '专业' : '新手', item.targetModel, item.topicType || '未识别', item.settingCardCompleted ? '已完成' : '未完成', item.exitStep || '未知', `${item.durationSeconds || 0} 秒`]
+          .forEach((value) => { const cell = document.createElement('td'); cell.textContent = value; row.appendChild(cell); });
+        rows.appendChild(row);
+      });
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const key = keyInput.value.trim();
+      if (!key) return;
+      status.textContent = '正在读取统计...';
+      dashboard.hidden = true;
+      try {
+        const response = await fetch('/api/stats', { headers: { 'x-stats-key': key } });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || '读取失败');
+        render(data);
+        dashboard.hidden = false;
+        status.textContent = '统计已更新。';
+      } catch (error) {
+        status.textContent = `读取失败：${error.message}`;
+      }
+    });
+  </script>
+</body>
+</html>
